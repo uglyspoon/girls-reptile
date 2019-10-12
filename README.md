@@ -42,7 +42,7 @@ PicGather（原GirlsReptile）是基于electron-vue开发的图片采集器，�
 ## 采集说明
 - [你有更好的网址？点我提交以官方支持适配](https://github.com/Licoy/pic-gather/issues/new)
 - [不满足我的需求，我可以自己写采集源吗？当然可以，点我查看文档](https://github.com/Licoy/pic-gather/wiki/reptile-source-rules)
-## 使用截图（V2.0.0版本，请以最新版本为准）
+## 使用截图（V2.1.0版本，请以最新版本为准）
 ### Mac
 ![mac](./docs/image/mac-1.png)
 ![mac](./docs/image/mac-2.png)
