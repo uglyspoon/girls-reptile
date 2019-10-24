@@ -32,15 +32,9 @@ PicGather是基于electron-vue开发的个人图片收藏器，支持自定义�
 您可以[点击此处](https://github.com/Licoy/pic-gather/releases)进行下载安装，支持Mac/Windows/Linux(未测试)
 ## 自定义收藏规则
 - [收藏源规则文档](https://github.com/Licoy/pic-gather/wiki/star-rules)
-## 使用截图（V2.1.0版本，请以最新版本为准）
-### Mac
-![mac](./docs/image/mac-1.png)
-![mac](./docs/image/mac-2.png)
-![mac](./docs/image/mac-3.png)
-### Windows
-![mac](./docs/image/win-1.png)
-![mac](./docs/image/win-2.png)
-![mac](./docs/image/win-3.png)
+## 使用截图（V2.2.0版本，请以最新版本为准）
+![mac](./docs/image/use-1.png)
+![mac](./docs/image/use-2.png)
 ## 使用说明
 此项目仅供学习交流或个人使用，请勿使用于商业及非法用途，若违反使用条例请自行承担相关后果。
 ## 使用协议

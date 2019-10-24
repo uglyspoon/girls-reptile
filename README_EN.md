@@ -32,15 +32,9 @@ PicGather is a personal photo collector based on electron-vue, which supports cu
 You can download and install here by [clicking here](https://github.com/Licoy/pic-gather/releases), support Mac/Windows/Linux (not tested)
 ## Custom collection rules
 - [Collection source rule document](https://github.com/Licoy/pic-gather/wiki/reptile-source-rules)
-## Use screenshots (V2.1.0 version, please refer to the latest version)
-### Mac
-![mac](./docs/image/mac-1.png)
-![mac](./docs/image/mac-2.png)
-![mac](./docs/image/mac-3.png)
-### Windows
-![mac](./docs/image/win-1.png)
-![mac](./docs/image/win-2.png)
-![mac](./docs/image/win-3.png)
+## Use screenshots (V2.2.0 version, please refer to the latest version)
+![mac](./docs/image/use-1.png)
+![mac](./docs/image/use-2.png)
 ## Instructions for use
 This project is for learning and communication purposes only. Please do not use it for commercial or illegal purposes. If you violate the usage regulations, please bear the relevant consequences.
 ## Use Agreement
