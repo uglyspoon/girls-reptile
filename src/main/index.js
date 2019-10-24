@@ -38,7 +38,6 @@ function createDownloadManager(){
   ipcMain.on('download-button', async (event, {url,name, headers}) => {
     if(!headers) headers = []
     let path = diffDir ? name : '/'
-    console.error('DiffDIR: '+diffDir)
     DownloadManager.bulkDownload({
         urls: [url],
         path: path,
@@ -47,24 +46,43 @@ function createDownloadManager(){
         if (error) {
             console.log("finished: " + finished);
             console.log("errors: " + errors);
+            event.sender.send('img-error', null)
             return;
         }
-        event.sender.send('download-url-ok', url)
+        event.sender.send('img-success', null)
         console.log("all finished");
     });
   });
+}
+
+function createMenu(){
+  const template = [{
+    label: 'Edit',
+    submenu: [
+      { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+      { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+      { type: 'separator' },
+      { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+      { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+      { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+      { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+      {
+        label: 'Quit',
+        accelerator: 'CmdOrCtrl+Q',
+        click () {
+          app.quit()
+        }
+      }
+    ]
+  }]
+  let menu = Menu.buildFromTemplate(template)
+  Menu.setApplicationMenu(menu)
 }
 
 
 function createDockMenu(mainWindow){
   const dockMenu = Menu.buildFromTemplate([
     {
-      label: '重新启动',
-      click () { 
-        app.relaunch()
-        app.quit()
-      }
-    }, {
       label: '检查更新',
       click () { 
         mainWindow.webContents.send('sys-check-update');
@@ -126,6 +144,7 @@ function createWindow () {
   if(process.platform != 'win32'){
     createDockMenu(mainWindow)
   }
+  createMenu(mainWindow)
 }
 
 

@@ -16,7 +16,7 @@ if (process.type !== 'renderer') {
     }
   }
 
-const adapter = new FileSync(path.join(STORE_PATH, '/girls-reptile.json'))
+const adapter = new FileSync(path.join(STORE_PATH, '/pic-gather.json'))
 
 const db = Datastore(adapter)
 
@@ -32,6 +32,16 @@ if (!db.has('config').value()) {
   let config = db.get('config').value()
   if(config.diffDirectory==undefined){
     config.diffDirectory = true
+  }
+  if(config.node==undefined){
+    config.node = 1
+  }
+  if(config.rsUrl==undefined){
+    if(config.node==1){
+      config.rsUrl = 'https://gitee.com/licoy/pic-gather/raw/master/reptile-source.json'
+    }else{
+      config.rsUrl = 'https://raw.githubusercontent.com/Licoy/pic-gather/master/reptile-source.json'
+    }
   }
   db.set('config',config).write()
 }

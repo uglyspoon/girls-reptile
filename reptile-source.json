@@ -1,0 +1,48 @@
+[
+    {
+        "name": "彼岸图网", 
+        "key":"netbian",
+        "url": "http://pic.netbian.com", 
+        "tags": [
+            {"name": "4k风景", "url": "http://pic.netbian.com/4kfengjing"},
+        ], 
+        "pages": {
+            "element": ".slist li", 
+            "name": {
+                "element": "b",
+                "attr": "@text"
+            },
+            "url": {
+                "element": "a",
+                "attr": "href",
+                "needMerge": true
+            },
+            "nextPageUrlMode": {
+                "mode": "add", 
+                "addValue": "/index_{page}.html"
+            }, 
+            "lastPage": {
+                "element": ".page a", 
+                "minPageLength": 2, 
+                "attr": "@text", 
+                "descIndex": 2, 
+                "isNeedSplit": false, 
+                "splits": []
+            }
+        }, 
+        "imgs": {
+            "element": ".photo-pic img", 
+            "urlNeedMerge": true,
+            "singlePage":true,
+            "nextPageUrlMode": {
+                "incrementMode": "page",
+                "mode": "add", 
+                "addValue": ""
+            }, 
+            "lastPage": {
+                "element": "#pages > a"
+            }
+        }, 
+        "supportReptileVersion": 2
+    }
+]
