@@ -2,7 +2,7 @@
 <div align="center">
     <img src="./build/icons/256x256.png" alt="">
     <h1>PicGather</h1>
-    <p>基于electron-vue开发的图片采集器，支持自定义采集源站配置，兼容MacOS与Windows操作系统</p>
+    <p>基于electron-vue开发的个人图片收藏器，支持自定义收藏源站配置，兼容MacOS与Windows操作系统</p>
       <a href="https://travis-ci.org/Licoy/pic-gather/builds">
         <img src="https://img.shields.io/travis/Licoy/pic-gather?style=flat-square" alt="">
       </a>
@@ -27,21 +27,11 @@
 </div>
 
 ## 应用介绍
-PicGather（原GirlsReptile）是基于electron-vue开发的图片采集器，支持自定义采集源站配置，兼容MacOS与Windows操作系统
+PicGather是基于electron-vue开发的个人图片收藏器，支持自定义收藏源站配置，兼容MacOS与Windows操作系统
 ## 下载安装
 您可以[点击此处](https://github.com/Licoy/pic-gather/releases)进行下载安装，支持Mac/Windows/Linux(未测试)
-## 开发折腾
-- [《关于在travis-ci以及appveyor条件构建遇到的坑》](https://www.licoy.cn/3385.html)
-## 官方已适配采集源站
-- [彼岸图网](http://pic.netbian.com)
-- [秀色女神](https://www.xsnvshen.com)
-- [nlegs(需挂代理)](http://www.nlegs.com)
-- [全图网](http://www.quantuwang.co/)
-- [美图录](https://www.meitulu.com)
-- [7106图片大全](https://www.7160.com/)
-## 采集说明
-- [你有更好的网址？点我提交以官方支持适配](https://github.com/Licoy/pic-gather/issues/new)
-- [不满足我的需求，我可以自己写采集源吗？当然可以，点我查看文档](https://github.com/Licoy/pic-gather/wiki/reptile-source-rules)
+## 自定义收藏规则
+- [收藏源规则文档](https://github.com/Licoy/pic-gather/wiki/star-rules)
 ## 使用截图（V2.1.0版本，请以最新版本为准）
 ### Mac
 ![mac](./docs/image/mac-1.png)
@@ -52,7 +42,9 @@ PicGather（原GirlsReptile）是基于electron-vue开发的图片采集器，�
 ![mac](./docs/image/win-2.png)
 ![mac](./docs/image/win-3.png)
 ## 使用说明
-此项目仅供学习交流使用，请勿使用于商业及非法用途，若违反使用条例请自行承担相关后果
+此项目仅供学习交流或个人使用，请勿使用于商业及非法用途，若违反使用条例请自行承担相关后果。
+## 使用协议
+- [使用协议](./USE_AGREEMENT.md)
 ## 资源说明
 本程序所有资源均来自于互联网，若侵犯到您的权利，请提交issue我们将核对完成第一时间删除相关内容。
 ## 讨论

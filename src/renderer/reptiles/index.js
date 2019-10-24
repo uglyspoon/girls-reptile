@@ -12,7 +12,7 @@ export default {
         let url = mode.tags[tagIndex].url
         try {
             let goUrl = page==1 ? url : this.getModeReplaceOrAddVal(url, mode.pages.nextPageUrlMode)
-            console.log(`开始采集第${page}页：${goUrl}`)
+            console.log(`开始收藏第${page}页：${goUrl}`)
             let res = await get(goUrl,null,{page:page})
             let $ = cheerio.load(res.data)
             let pcList = $(mode.pages.element)

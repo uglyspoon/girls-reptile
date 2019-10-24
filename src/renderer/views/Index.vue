@@ -12,7 +12,7 @@
         <div id="main">
             <div style="margin-top:20px">
                 <Form ref="formInline" inline :label-width="80">
-                    <FormItem label='采集源'>
+                    <FormItem label='收藏源'>
                         <Select :disabled="loading" v-model="config.siteIndex" style="width:200px" @on-change="originSourceChange">
                             <Option :value="index" :key="index" v-for="(item,index) in originSource">{{ item.name }}</Option>
                         </Select>
@@ -22,7 +22,7 @@
                             <Option :value="index" :key="index" v-for="(item,index) in originSource[config.siteIndex].tags">{{ item.name }}</Option>
                         </Select>
                     </FormItem>
-                    <FormItem label='采集延迟(ms)'>
+                    <FormItem label='拉取延迟(ms)'>
                         <Slider style="width:200px;" :disabled="loading" @on-change="saveConfig" v-model="config.timeout"
                             :min='10' :max='2000' :step='10' show-tip='hover' :tip-format='(value)=>{return `${value} ms`}'></Slider>
                     </FormItem>
@@ -38,10 +38,10 @@
                                 <span slot="open">开启</span>
                                 <span slot="close">关闭</span>
                             </i-switch>
-                            <Button v-if="!loading" @click="getData" type="success" style="margin-left:10px"><Icon type="md-cloud-download" /> 立即进行自动采集</Button>
-                            <Button v-else @click="stopRunning" type="error" style="margin-left:10px"><Icon type="md-close-circle" /> 立即停止采集</Button>
-                            <Button @click="settingRS('show')" type="primary" style="margin-left:10px"><Icon type="md-cog" /> 设置采集源</Button>
-                            <Button @click="getOriginSource(true)" style="margin-left:10px"><Icon type="md-cog" /> 同步采集源</Button>
+                            <Button v-if="!loading" @click="getData" type="success" style="margin-left:10px"><Icon type="md-cloud-download" /> 立即进行自动收藏</Button>
+                            <Button v-else @click="stopRunning" type="error" style="margin-left:10px"><Icon type="md-close-circle" /> 立即停止收藏</Button>
+                            <Button @click="settingRS('show')" type="primary" style="margin-left:10px"><Icon type="md-cog" /> 设置收藏源</Button>
+                            <Button @click="getOriginSource(true)" style="margin-left:10px"><Icon type="md-cog" /> 同步收藏源</Button>
                         </template>
                     </FormItem>
                 </Form>
@@ -50,7 +50,7 @@
             <div>
                 <div v-if="!loading && (!reptile.data || reptile.data.length==0) " style="width:100%;text-align:center">
                     <img src="../assets/ready.png" width="100px">
-                    <p class="mt10">准备就绪，点击「立即进行自动采集」开始工作 😊</p>
+                    <p class="mt10">准备就绪，点击「立即进行自动收藏」开始工作 😊</p>
                 </div>
                 <div v-else-if="loading && (!reptile.data || reptile.data.length==0) " style="width:100%;text-align:center">
                     <Icon class="ivu-load-loop" type="md-refresh" :size='100'/>
@@ -59,8 +59,8 @@
                 <div v-else id="records">
                     <template v-for="(item,index) in reptile.data" >
                         <Alert show-icon v-if="item.status==0">「等待数据分析」{{item.name}}</Alert>
-                        <Alert show-icon type="success" v-else-if="item.status==1">「已加入采集队列」{{item.name}}</Alert>
-                        <Alert show-icon type="warning" v-else-if="item.status==2">「采集异常」{{item.name}}</Alert>
+                        <Alert show-icon type="success" v-else-if="item.status==1">「已加入收藏队列」{{item.name}}</Alert>
+                        <Alert show-icon type="warning" v-else-if="item.status==2">「收藏异常」{{item.name}}</Alert>
                     </template>
                 </div>
             </div>
@@ -68,13 +68,13 @@
         <div id="status">
             <Row>
                 <Col span='8'>
-                    <div class="tc"><span class="dot"></span> 队列待采集数：{{countWait}}</div>
+                    <div class="tc"><span class="dot"></span> 队列待收藏数：{{countWait}}</div>
                 </Col>
                 <Col span='8'>
-                    <div class='tc'><span class="dot success"></span> 已完成采集数：{{countSuccess}}</div>
+                    <div class='tc'><span class="dot success"></span> 已完成收藏数：{{countSuccess}}</div>
                 </Col>
                 <Col span='8'>
-                    <div class="tc"><span class="dot error"></span> 采集异常数：{{countError}}</div>
+                    <div class="tc"><span class="dot error"></span> 收藏异常数：{{countError}}</div>
                 </Col>
             </Row>
         </div>
@@ -93,7 +93,7 @@
                     <div class="cur" @click="onTitleMenuClick('idea')"><Icon type="ios-bulb" /> 提交想法</div>
                 </Col>
                 <Col span='3'>
-                    <div class="cur" @click="onTitleMenuClick('support')"><Icon type="md-color-palette" /> 支持我们</div>
+                    <div class="cur" @click="onTitleMenuClick('use-agreement')"><Icon type="md-color-palette" /> 使用协议</div>
                 </Col>
                 <Col span='5'>
                     <div class="cur" @click="onTitleMenuClick('about')"><Icon type="md-alert" /> 关于软件 | 当前版本：{{version}}</div>
@@ -109,22 +109,16 @@
             <p class="fs14">项目Gitee主页：<a @click="openUrl('https://gitee.com/licoy/pic-gather')">https://gitee.com/licoy/pic-gather</a></p>
             <p class="fs14">使用声明：此项目仅供学习交流使用，请勿使用于商业及非法用途，具体条款请参见于项目主页。</p>
         </Modal>
-        <Modal title="采集源设置" v-model="setting.show" width="700px" :mask-closable='false' :closable='false'>
-            <p style="font-size:12px">官方采集源：<a @click="openUrl('https://raw.githubusercontent.com/Licoy/pic-gather/master/reptile-source.json')"
-                >https://raw.githubusercontent.com/Licoy/pic-gather/master/reptile-source.json</a></p>
-            <br>
-            <p style="font-size:12px">国内采集源：<a @click="openUrl('https://gitee.com/licoy/pic-gather/raw/master/reptile-source.json')"
-                >https://gitee.com/licoy/pic-gather/raw/master/reptile-source.json</a></p>
-            <br>
-            <p style="font-size:12px">采集源规则：<a @click="openUrl('https://github.com/Licoy/pic-gather/wiki/reptile-source-rules')"
-            >https://github.com/Licoy/pic-gather/wiki/reptile-source-rules</a></p>
+        <Modal title="收藏源设置" v-model="setting.show" width="700px" :mask-closable='false' :closable='false'>
+            <p style="font-size:12px">收藏源规则：<a @click="openUrl('https://github.com/Licoy/pic-gather/wiki/star-rules')"
+            >https://github.com/Licoy/pic-gather/wiki/star-rules</a></p>
             <br>
             <p style="font-size:12px">支持版本号：{{$reptileVersion}}（向下兼容）</p>
             <Divider />
             <Form :label-width='100'>
-                <FormItem label='采集源地址：'>
+                <FormItem label='收藏源地址：'>
                     <template>
-                        <Input v-model="setting.tempRsUrl" :disabled="loading" placeholder="请输入采集源地址" />
+                        <Input v-model="setting.tempRsUrl" :disabled="loading" placeholder="请输入收藏源地址" />
                     </template>
                 </FormItem>
             </Form>
@@ -220,7 +214,7 @@ export default {
         async getOriginSource(refresh=false){
             if(!this.$db.has('origins').value() || refresh===true){
                 let load = this.$Message.loading({
-                    content: '采集源站资源同步中...',
+                    content: '收藏源站资源同步中...',
                     duration: 0
                 });
                 try {
@@ -237,13 +231,13 @@ export default {
                     this.saveConfig()
                     load()
                     this.$db.set('origins',rs).write()
-                    this.$Message.success("采集源同步成功")
+                    this.$Message.success("收藏源同步成功")
                 } catch (error) {
                     load()
                     console.error(error)
                     this.$Modal.confirm({
                         title: '提示',
-                        content: '<p>采集源站资源加载失败，是否进行重新加载？</p><br><p>提示：如果您多次加载失败，请到Github项目主页提交issue。</p>',
+                        content: '<p>收藏源站资源加载失败，是否进行重新加载？</p>',
                         onOk: () => {
                             this.getOriginSource(true)
                         }
@@ -290,7 +284,7 @@ export default {
                 this.startReptile(this.originSource[this.config.siteIndex], this.config.tagIndex, this)
             }catch(e){
                 this.$store.commit('STOP');
-                this.$Message.error("采集出错")
+                this.$Message.error("收藏执行出错")
             }
         },
         stopRunning(){
@@ -380,8 +374,8 @@ export default {
             }else if(name=='idea'){
                 let title = `[ ${version} ] - 想法`
                 this.openUrl('https://github.com/Licoy/pic-gather/issues/new?assignees=&labels=需求&template=demand.md&title='+title)
-            }else if(name=='support'){
-                this.openNodeUrl('#支持我们')
+            }else if(name=='use-agreement'){
+                this.openNodeUrl('/blob/master/use-agreement.md')
             }else if(name=='github'){
                 this.openNodeUrl('')
             }else if(name=='node'){

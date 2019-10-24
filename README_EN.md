@@ -2,7 +2,7 @@
 <div align="center">
     <img src="./build/icons/256x256.png" alt="">
     <h1>PicGather</h1>
-    <p>Image collector based on electron-vue, support custom acquisition source station configuration, compatible with MacOS and Windows operating system</p>
+    <p>Personal picture collector based on electron-vue, support custom collection source station configuration, compatible with MacOS and Windows operating system.</p>
       <a href="https://travis-ci.org/Licoy/pic-gather/builds">
         <img src="https://img.shields.io/travis/Licoy/pic-gather?style=flat-square" alt="">
       </a>
@@ -27,21 +27,11 @@
 </div>
 
 ## Application introduction
-PicGather is an image collector based on electron-vue, which supports custom acquisition source configuration and is compatible with MacOS and Windows operating systems.
+PicGather is a personal photo collector based on electron-vue, which supports custom collection source configuration, compatible with MacOS and Windows operating systems.
 ## Download and install
 You can download and install here by [clicking here](https://github.com/Licoy/pic-gather/releases), support Mac/Windows/Linux (not tested)
-## Development toss
-- [《关于在travis-ci以及appveyor条件构建遇到的坑》](https://www.licoy.cn/3385.html)
-## Officially adapted source station
-- [彼岸图网](http://pic.netbian.com)
-- [秀色女神](https://www.xsnvshen.com)
-- [nlegs(需挂代理)](http://www.nlegs.com)
-- [全图网](http://www.quantuwang.co/)
-- [美图录](https://www.meitulu.com)
-- [7106图片大全](https://www.7160.com/)
-## Acquisition instructions
-- [Do you have a better URL? Click me to submit with official support](https://github.com/Licoy/pic-gather/issues/new)
-- [Can't I meet my needs, can I write my own collection source? Of course, point me to view the document.](https://github.com/Licoy/pic-gather/wiki/reptile-source-rules)
+## Custom collection rules
+- [Collection source rule document](https://github.com/Licoy/pic-gather/wiki/reptile-source-rules)
 ## Use screenshots (V2.1.0 version, please refer to the latest version)
 ### Mac
 ![mac](./docs/image/mac-1.png)
@@ -53,6 +43,8 @@ You can download and install here by [clicking here](https://github.com/Licoy/pi
 ![mac](./docs/image/win-3.png)
 ## Instructions for use
 This project is for learning and communication purposes only. Please do not use it for commercial or illegal purposes. If you violate the usage regulations, please bear the relevant consequences.
+## Use Agreement
+- [Use Agreement](./USE_AGREEMENT.md)
 ## Resource description
 All resources of this program are from the Internet. If you infringe on your rights, please submit an issue and we will check the first time to delete the relevant content.
 ## Discuss
